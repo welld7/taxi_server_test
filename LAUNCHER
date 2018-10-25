@@ -1,0 +1,12 @@
+#!/bin/bash
+python taxi.py &
+
+T_PID=$!
+py.test -v -s -m 'taxi'
+STATUS=$? 
+kill -9 $T_PID
+if [ "$STATUS" -eq "0" ]; then
+   echo "OK";
+else
+   echo "FAILED";
+fi
